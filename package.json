@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@egjs/hammerjs": "^2.0.17",
+    "vis-network": "^9.1.2"
+  }
+}

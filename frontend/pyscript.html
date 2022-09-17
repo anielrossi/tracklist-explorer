@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+<script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<py-env>
+- pyvis
+</py-env>
+<py-script>
+	print("Hello")
+	from pyvis.network import Network
+	import json
+
+	f = open('episodes_per_style.json')
+  
+	# returns JSON object as 
+	# a dictionary
+	data = json.load(f)
+</py-script>
+
+</body>
+</html>
