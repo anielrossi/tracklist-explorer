@@ -96,7 +96,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
       },
       edges: {
         color: {
-          color: '#CCC',
+          color: '#FFFFFF',
           highlight: '#A22'
         },
       }
