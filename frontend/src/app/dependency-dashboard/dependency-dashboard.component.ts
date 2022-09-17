@@ -44,12 +44,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
     const nodes = new DataSet<any>([]);
 
         // create an array with edges
-        const edges = new DataSet<any>([
-          { from: '1', to: '3' },
-          { from: '1', to: '2' },
-          { from: '2', to: '4' },
-          { from: '2', to: '5' },
-        ]);
+        const edges = new DataSet<any>([]);
 
     for (let genre in episodes){
       nodes.add({ id: genre, label: genre})
@@ -68,15 +63,14 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         console.log(clean_label)
         try {
           nodes.add({ id: episode, label: clean_label})
-          edges.add({ from: key, to: episode})
         }
         catch(error){
         }
-
+        edges.add({ from: key, to: episode})
       }
     }
     
-
+    console.log(edges)
 
     const data = { nodes, edges };
 
