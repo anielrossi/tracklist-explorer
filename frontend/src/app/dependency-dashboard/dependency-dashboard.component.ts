@@ -61,7 +61,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         const clean_label = label.replace('"', '')
         console.log(clean_label)
         try {
-          nodes.add({ id: episode, label: clean_label, shape: 'image', image: '/assets/img/lowK-' + clean_label + '-remastered.png'})
+          nodes.add({ id: episode, shape: 'image', image: '/assets/img/lowK-' + clean_label + '-remastered.png'})
         }
         catch(error){
           console.log(error)
@@ -89,7 +89,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
     var options = {
       nodes: {
         borderWidth:0,
-        size:42,
+        size:40,
         color: {
           border: '#222',
         },
@@ -99,9 +99,6 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
           color: '#CCC',
           highlight: '#A22'
         },
-        width: 3,
-        length: 275,
-        hoverWidth: .05
       }
     }
 
