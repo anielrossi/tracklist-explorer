@@ -9,7 +9,6 @@ import { Network } from 'vis-network';
 })
 export class DependencyDashboardComponent implements OnInit, AfterViewInit {
   @ViewChild('visNetwork', { static: false }) visNetwork!: ElementRef;
-  private networkInstance: any;
 
   constructor() {}
 
@@ -75,6 +74,14 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
     const data = { nodes, edges };
 
     const container = this.visNetwork;
-    this.networkInstance = new Network(container.nativeElement, data, {});
+    let networkInstance = new Network(container.nativeElement, data, {});
+
+    networkInstance.on('click', function(params) {
+      var ids = params.nodes;
+      var clickedNodes = nodes.get(ids);
+      console.log('clicked nodes:', clickedNodes);
+      open(clickedNodes[0].id)
+  });
+
   }
 }
