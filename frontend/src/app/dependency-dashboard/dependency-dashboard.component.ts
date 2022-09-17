@@ -62,7 +62,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         const clean_label = '#' + label.replace('"', '')
         console.log(clean_label)
         try {
-          nodes.add({ id: episode, label: clean_label})
+          nodes.add({ id: episode, label: clean_label, color:'#F3FF33'})
         }
         catch(error){
         }
