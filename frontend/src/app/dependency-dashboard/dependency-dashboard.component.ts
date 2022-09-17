@@ -43,11 +43,20 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
 
     const nodes = new DataSet<any>([]);
 
+        // create an array with edges
+        const edges = new DataSet<any>([
+          { from: '1', to: '3' },
+          { from: '1', to: '2' },
+          { from: '2', to: '4' },
+          { from: '2', to: '5' },
+        ]);
+
     for (let genre in episodes){
       nodes.add({ id: genre, label: genre})
     }
 
     for (const [key, value] of Object.entries(episodes)) {
+      console.log(key)
       for (const [idx, episode] of Object.entries(value)) {
         console.log(episode)
         const str_episode = JSON.stringify(episode);
@@ -59,6 +68,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         console.log(clean_label)
         try {
           nodes.add({ id: episode, label: clean_label})
+          edges.add({ from: key, to: episode})
         }
         catch(error){
         }
@@ -66,13 +76,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
       }
     }
     
-    // create an array with edges
-    const edges = new DataSet<any>([
-      { from: '1', to: '3' },
-      { from: '1', to: '2' },
-      { from: '2', to: '4' },
-      { from: '2', to: '5' },
-    ]);
+
 
     const data = { nodes, edges };
 
