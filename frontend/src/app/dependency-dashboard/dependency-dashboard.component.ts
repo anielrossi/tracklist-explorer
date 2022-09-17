@@ -58,12 +58,13 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         const myArray = str_episode.split("-");
         console.log(myArray)
         const label = myArray[myArray.length - 1];
-        const clean_label = '#' + label.replace('"', '')
+        const clean_label = label.replace('"', '')
         console.log(clean_label)
         try {
-          nodes.add({ id: episode, label: clean_label, color:'#F3FF33'})
+          nodes.add({ id: episode, label: clean_label, shape: 'image', image: '/assets/img/lowK-' + clean_label + '-remastered.png'})
         }
         catch(error){
+          console.log(error)
         }
         edges.add({ from: key, to: episode})
       }
@@ -85,8 +86,27 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
 
     const data = { nodes, edges };
 
+    var options = {
+      nodes: {
+        borderWidth:0,
+        size:42,
+        color: {
+          border: '#222',
+        },
+      },
+      edges: {
+        color: {
+          color: '#CCC',
+          highlight: '#A22'
+        },
+        width: 3,
+        length: 275,
+        hoverWidth: .05
+      }
+    }
+
     const container = this.visNetwork;
-    let networkInstance = new Network(container.nativeElement, data, {});
+    let networkInstance = new Network(container.nativeElement, data, options);
 
     networkInstance.on('click', function(params) {
       var ids = params.nodes;
