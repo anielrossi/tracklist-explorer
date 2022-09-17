@@ -68,6 +68,18 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         edges.add({ from: key, to: episode})
       }
     }
+
+    function isValidHttpUrl(string: any) {
+      let url;
+      
+      try {
+        url = new URL(string);
+      } catch (_) {
+        return false;  
+      }
+    
+      return url.protocol === "http:" || url.protocol === "https:";
+    }
     
     console.log(edges)
 
@@ -80,7 +92,11 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
       var ids = params.nodes;
       var clickedNodes = nodes.get(ids);
       console.log('clicked nodes:', clickedNodes);
-      open(clickedNodes[0].id)
+      if (isValidHttpUrl(clickedNodes[0].id))
+      {
+        open(clickedNodes[0].id)
+      }
+          
   });
 
   }
