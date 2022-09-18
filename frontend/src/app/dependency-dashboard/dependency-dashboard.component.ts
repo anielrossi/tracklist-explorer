@@ -46,7 +46,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         const edges = new DataSet<any>([]);
 
     for (let genre in episodes){
-      nodes.add({ id: genre, label: genre})
+      nodes.add({ id: genre, label: genre, color:'#FFF5C9'})
     }
 
     for (const [key, value] of Object.entries(episodes)) {
@@ -61,7 +61,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         const clean_label = label.replace('"', '')
         console.log(clean_label)
         try {
-          nodes.add({ id: episode, shape: 'image', image: '/assets/img/lowK-' + clean_label + '-remastered.png'})
+          nodes.add({ id: episode, size:40, shape: 'image', image: '/assets/img/lowK-' + clean_label + '-remastered.png'})
         }
         catch(error){
           console.log(error)
@@ -89,7 +89,6 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
     var options = {
       nodes: {
         borderWidth:0,
-        size:40,
         color: {
           border: '#222',
         },
