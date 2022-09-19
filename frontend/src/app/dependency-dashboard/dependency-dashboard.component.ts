@@ -108,7 +108,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
     //const data_from_json = JSON.stringify(networkInstance)
     //console.log(data_from_json)
 
-    networkInstance.on('click', function(params) {
+    networkInstance.on('doubleClick', function(params) {
       var ids = params.nodes;
       var clickedNodes = nodes.get(ids);
       console.log('clicked nodes:', clickedNodes);
