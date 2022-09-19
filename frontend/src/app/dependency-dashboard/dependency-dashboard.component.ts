@@ -37,7 +37,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         id =  "https://soundcloud.com/aniel-rossi/k-with-sindrome-" + key
       }
       
-      nodes.add({ id: id, color:'#FFF5C9', shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
+      nodes.add({ id: id, color:'#FFF5C9', size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
 
       for (const x of value) { 
         try{
@@ -77,22 +77,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         shape: 'star',
         shapeProperties: {
           interpolation: false    // 'true' for intensive zooming
-        },
-        layout: {
-          improvedLayout:false
-        },
-        smooth:{
-          type:'continuous'
-        },
-        font: {
-          // required: enables displaying <b>text</b> in the label as bold text
-          multi: 'html',
-          // optional: use this if you want to specify the font of bold text
-          bold: '16px arial black'
         }
-      },
-      physics:{
-        stabilizations:false
       },
       edges: {
         color: {
