@@ -48,7 +48,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         const label = myArray[myArray.length - 1];
         const clean_label = label.replace('"', '')
         try {
-          nodes.add({ id: episode, size:40, shape: 'image', image: '/assets/img/lowK-' + clean_label + '-remastered.png'})
+          nodes.add({ id: episode, size:40, shape: 'image', image: '/assets/img/lowK-' + clean_label + '-remastered.webp'})
         }
         catch(error){
         }
@@ -69,7 +69,8 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
       return url.protocol === "http:" || url.protocol === "https:";
     }
     
-    console.log(edges)
+    console.log("Nodes:", nodes)
+    console.log("Edges:", edges)
 
     const data = { nodes, edges };
 
@@ -90,6 +91,9 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
 
     const container = this.visNetwork;
     let networkInstance = new Network(container.nativeElement, data, options);
+    
+    //const data_from_json = JSON.stringify(networkInstance)
+    //console.log(data_from_json)
 
     networkInstance.on('click', function(params) {
       var ids = params.nodes;
