@@ -74,6 +74,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         color: {
           border: '#222',
         },
+        shape: 'star',
         shapeProperties: {
           interpolation: false    // 'true' for intensive zooming
         },
@@ -82,6 +83,12 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         },
         smooth:{
           type:'continuous'
+        },
+        font: {
+          // required: enables displaying <b>text</b> in the label as bold text
+          multi: 'html',
+          // optional: use this if you want to specify the font of bold text
+          bold: '16px arial black'
         }
       },
       physics:{
