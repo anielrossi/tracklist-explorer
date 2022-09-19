@@ -84,6 +84,12 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
           color: '#FFFFFF',
           highlight: '#A22'
         },
+      },
+      physics: {
+        //"barnesHut": {
+        //  "avoidOverlap": 0.2
+        //}
+        solver: "hierarchicalRepulsion"
       }
     }
 
