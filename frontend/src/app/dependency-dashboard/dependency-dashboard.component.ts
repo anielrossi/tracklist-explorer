@@ -74,10 +74,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         color: {
           border: '#222',
         },
-        shape: 'star',
-        shapeProperties: {
-          interpolation: false    // 'true' for intensive zooming
-        }
+        shape: 'star'
       },
       edges: {
         color: {
@@ -85,12 +82,6 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
           highlight: '#A22'
         },
       },
-      physics: {
-        //"barnesHut": {
-        //  "avoidOverlap": 0.2
-        //}
-        solver: "hierarchicalRepulsion"
-      }
     }
 
     const container = this.visNetwork;
