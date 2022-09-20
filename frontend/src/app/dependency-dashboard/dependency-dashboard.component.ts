@@ -1,3 +1,4 @@
+import { createInjectableType } from '@angular/compiler';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DataSet } from 'vis-data';
 import { Network } from 'vis-network';
@@ -10,7 +11,10 @@ import { Network } from 'vis-network';
 export class DependencyDashboardComponent implements OnInit, AfterViewInit {
   @ViewChild('visNetwork', { static: false }) visNetwork!: ElementRef;
 
-  constructor() {}
+  constructor() {
+    console.log(window.screen.height) + "px";
+    console.log(window.screen.width) + "px";
+  }
 
   ngOnInit(): void {}
 
@@ -25,6 +29,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
     // create an array with edges
     const edges = new DataSet<any>([]);
 
+    var already_existing_id = <String[]>[];
 
     for (const [key, value] of Object.entries(episodes_most_common)){
       
@@ -37,9 +42,19 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         id =  "https://soundcloud.com/aniel-rossi/k-with-sindrome-" + key
       }
       
-      nodes.add({ id: id, color:'#FFF5C9', size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
+      if (window.screen.width < 900){
+        nodes.add({ id: id, label: key, shape: 'circle', color:'#FFF5C9', size:35})
+      }
+      else{
+        nodes.add({ id: id, color:'#FFF5C9', size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
+      }
 
       for (const x of value) { 
+
+/*      if (!already_existing_id.includes(x[0])){
+          nodes.add({ id: x[0], label: x[0], color:'#FFF5C9'});
+          already_existing_id.push(x[0])
+        } */
         try{
           nodes.add({ id: x[0], label: x[0], color:'#FFF5C9'})
         }
@@ -62,9 +77,6 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
     
       return url.protocol === "http:" || url.protocol === "https:";
     }
-    
-    console.log("Nodes:", nodes)
-    console.log("Edges:", edges)
 
     const data = { nodes, edges };
 
@@ -82,6 +94,11 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
           highlight: '#A22'
         },
       },
+      layout: {
+        improvedLayout: true,
+        randomSeed: 191006
+        //randomSeed: 2
+    },
     }
 
     const container = this.visNetwork;
