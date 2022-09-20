@@ -30,8 +30,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
     // create an array with edges
     const edges = new DataSet<any>([]);
 
-    var already_existing_id = <String[]>[];
-    console.log(tracks.behzad)
+    //var already_existing_id = <String[]>[];
 
     for (const [key, value] of Object.entries(episodes_most_common)){
       
@@ -48,7 +47,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         nodes.add({ id: id, label: key, shape: 'circle', color:'#FFF5C9', size:35})
       }
       else{
-        nodes.add({ id: id, color:'#FFF5C9', size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
+        nodes.add({ id: id, color:'#FFF5C9', title: ((<any>tracks)[key]), size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
       }
 
       for (const x of value) { 
