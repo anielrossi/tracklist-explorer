@@ -2,7 +2,7 @@ import { createInjectableType } from '@angular/compiler';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DataSet } from 'vis-data';
 import { Network } from 'vis-network';
-import tracks from 'src/assets/json/tracks.json'
+import tracks from 'src/assets/json/tracks_json.json'
 
 @Component({
   selector: 'jhi-dependency-dashboard',
@@ -42,12 +42,13 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
       else {
         id =  "https://soundcloud.com/aniel-rossi/k-with-sindrome-" + key
       }
-      
+
       if (window.screen.width < 900){
         nodes.add({ id: id, label: key, shape: 'circle', color:'#FFF5C9', size:35})
       }
       else{
-        nodes.add({ id: id, color:'#FFF5C9', title: ((<any>tracks)[key]), size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
+        //nodes.add({ id: id, color:'#FFF5C9', title: 'src/assets/txt/tracklists_' + key + '.txt', size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
+        nodes.add({ id: id, color:'#FFF5C9', title: (<any>tracks)[key], size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
       }
 
       for (const x of value) { 
