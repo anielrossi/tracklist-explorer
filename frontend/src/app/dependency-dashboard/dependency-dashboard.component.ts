@@ -35,16 +35,22 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
     for (const [key, value] of Object.entries(episodes_most_common)){
       
       let id;
+      let label;
+      let size;
       
       if (isNaN(Number(key))) {
         id = "https://soundcloud.com/aniel-rossi/k-sindrome-invites-" + key
+        label = key
+        size = 35
       }
       else {
         id =  "https://soundcloud.com/aniel-rossi/k-with-sindrome-" + key
+        label = '#' + key
+        size = 300
       }
 
       if (window.screen.width < 900){
-        nodes.add({ id: id, label: key, shape: 'circle', color:'#FFF5C9', size:35})
+        nodes.add({ id: id, label: label, shape: 'circle', color:'#FFF5C9', size: size})
       }
       else{
         //nodes.add({ id: id, color:'#FFF5C9', title: 'src/assets/txt/tracklists_' + key + '.txt', size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
