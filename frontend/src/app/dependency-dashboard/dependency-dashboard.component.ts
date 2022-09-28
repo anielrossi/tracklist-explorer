@@ -83,6 +83,11 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
     const data = { nodes, edges };
 
     var options = {
+      physics:{
+        barnesHut: {
+          damping: 0.5
+        }
+      },
       nodes: {
         borderWidth:0,
         color: {
@@ -117,8 +122,6 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
       {
         open(clickedNodes[0].id)
       }
-          
-  });
-
+    })
   }
 }
