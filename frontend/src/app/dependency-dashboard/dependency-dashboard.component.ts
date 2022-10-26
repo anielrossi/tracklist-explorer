@@ -88,30 +88,57 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
 
     const data = { nodes, edges };
 
-    var options = {
-      physics:{
-        barnesHut: {
-          damping: 0.5
-        }
-      },
-      nodes: {
-        borderWidth:0,
-        color: {
-          border: '#222',
+    var options;
+
+    if (window.screen.width < 900){
+      options= {
+        physics:{
+          barnesHut: {
+            damping: 0.5
+          }
         },
-        shape: 'star'
-      },
-      edges: {
-        color: {
-          color: '#FFFFFF',
-          highlight: '#A22'
+        nodes: {
+          borderWidth:0,
+          color: {
+            border: '#222',
+          },
+          shape: 'star'
         },
-      },
-      layout: {
-        improvedLayout: true,
-        randomSeed: 191006
-        //randomSeed: 2
-    },
+        edges: {
+          color: {
+            color: '#FFFFFF',
+            highlight: '#A22'
+          },
+        },
+        layout: {
+          improvedLayout: true,
+          randomSeed: 191006
+          //randomSeed: 2
+        },
+      }
+    }
+    // no damping
+    else {
+      options = {
+        nodes: {
+          borderWidth:0,
+          color: {
+            border: '#222',
+          },
+          shape: 'star'
+        },
+        edges: {
+          color: {
+            color: '#FFFFFF',
+            highlight: '#A22'
+          },
+        },
+        layout: {
+          improvedLayout: true,
+          randomSeed: 191006
+          //randomSeed: 2
+        },
+      }
     }
 
     const container = this.visNetwork;
