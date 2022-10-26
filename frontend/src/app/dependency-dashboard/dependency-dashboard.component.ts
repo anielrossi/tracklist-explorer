@@ -150,11 +150,28 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
     networkInstance.on('doubleClick', function(params) {
       var ids = params.nodes;
       var clickedNodes = nodes.get(ids);
-      console.log('clicked nodes:', clickedNodes);
+      console.log('double clicked nodes:', clickedNodes);
       if (isValidHttpUrl(clickedNodes[0].id))
       {
         open(clickedNodes[0].id)
       }
     })
+
+    if (window.screen.width < 900){
+      networkInstance.on("click", function (params) {
+        var ids = params.nodes;
+        var clickedNodes = nodes.get(ids);
+        console.log('single clicked node:', clickedNodes)
+        var index = clickedNodes[0].label
+        if (isNaN(Number(index.substring(1)))){
+          index = index
+        }
+        else {
+          index = index.substring(1)
+        }
+        clickedNodes[0].title = (<any>tracks)[index]
+        console.log(clickedNodes[0].title)
+      })
+    }
   }
 }
