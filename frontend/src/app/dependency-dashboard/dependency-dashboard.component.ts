@@ -54,7 +54,8 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
       }
       else{
         //nodes.add({ id: id, color:'#FFF5C9', title: 'src/assets/txt/tracklists_' + key + '.txt', size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
-        nodes.add({ id: id, color:'#FFF5C9', title: (<any>tracks)[key], size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
+        //nodes.add({ id: id, color:'#FFF5C9', title: (<any>tracks)[key], size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
+        nodes.add({ id: id, color:'#FFF5C9', label: label, title: (<any>tracks)[key], size: size, shape: 'circle'})
       }
 
       for (const x of value) { 
