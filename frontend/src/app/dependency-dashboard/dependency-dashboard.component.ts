@@ -3,6 +3,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { DataSet } from 'vis-data';
 import { Network } from 'vis-network';
 import tracks from 'src/assets/json/tracks_json.json'
+import descriptions from 'src/assets/json/descriptions_json.json'
 
 @Component({
   selector: 'jhi-dependency-dashboard',
@@ -55,7 +56,11 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
       else{
         //nodes.add({ id: id, color:'#FFF5C9', title: 'src/assets/txt/tracklists_' + key + '.txt', size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
         //nodes.add({ id: id, color:'#FFF5C9', title: (<any>tracks)[key], size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
-        nodes.add({ id: id, color:'#FFF5C9', label: label, title: (<any>tracks)[key], size: size, shape: 'circle'})
+        console.log(key)
+        //var title = (<any>descriptions)[key] + (<any>tracks)[key]
+        var title = (<any>tracks)[key]
+        console.log(title)
+        nodes.add({ id: id, color:'#FFF5C9', label: label, title: title, size: size, shape: 'circle'})
       }
 
       for (const x of value) { 
