@@ -59,8 +59,8 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         console.log(key)
         //var title = (<any>descriptions)[key] + (<any>tracks)[key]
         //var title =  htmlTitle('<span">' + (<any>descriptions)[key] + '</span>')
-        //var title = (<any>tracks)[key]
-        var title = (<any>descriptions)[key]
+        var title = (<any>tracks)[key]
+        //var title = (<any>descriptions)[key]
         console.log(title)
         nodes.add({ id: id, color:'#FFF5C9', label: label, title: title, size: size, shape: 'circle'})
       }
