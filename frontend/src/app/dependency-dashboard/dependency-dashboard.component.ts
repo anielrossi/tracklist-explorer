@@ -58,7 +58,9 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         //nodes.add({ id: id, color:'#FFF5C9', title: (<any>tracks)[key], size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
         console.log(key)
         //var title = (<any>descriptions)[key] + (<any>tracks)[key]
-        var title = (<any>tracks)[key]
+        //var title =  htmlTitle('<span">' + (<any>descriptions)[key] + '</span>')
+        //var title = (<any>tracks)[key]
+        var title = (<any>descriptions)[key]
         console.log(title)
         nodes.add({ id: id, color:'#FFF5C9', label: label, title: title, size: size, shape: 'circle'})
       }
@@ -181,3 +183,10 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
     }
   }
 }
+
+function htmlTitle(html: string) {
+  const container = document.createElement("div");
+  container.innerHTML = html;
+  return container;
+}
+
