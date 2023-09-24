@@ -3,6 +3,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { DataSet } from 'vis-data';
 import { Network } from 'vis-network';
 import tracks from 'src/assets/json/tracks_json.json'
+import descriptions from 'src/assets/json/descriptions_json.json'
 
 @Component({
   selector: 'jhi-dependency-dashboard',
@@ -35,20 +36,33 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
     for (const [key, value] of Object.entries(episodes_most_common)){
       
       let id;
+      let label;
+      let size;
       
       if (isNaN(Number(key))) {
         id = "https://soundcloud.com/aniel-rossi/k-sindrome-invites-" + key
+        label = key
+        size = 35
       }
       else {
         id =  "https://soundcloud.com/aniel-rossi/k-with-sindrome-" + key
+        label = '#' + key
+        size = 300
       }
 
       if (window.screen.width < 900){
-        nodes.add({ id: id, label: key, shape: 'circle', color:'#FFF5C9', size:35})
+        nodes.add({ id: id, label: label, shape: 'circle', color:'#FFF5C9', size: size})
       }
       else{
         //nodes.add({ id: id, color:'#FFF5C9', title: 'src/assets/txt/tracklists_' + key + '.txt', size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
-        nodes.add({ id: id, color:'#FFF5C9', title: (<any>tracks)[key], size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
+        //nodes.add({ id: id, color:'#FFF5C9', title: (<any>tracks)[key], size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
+        console.log(key)
+        //var title = (<any>descriptions)[key] + (<any>tracks)[key]
+        //var title =  htmlTitle('<span">' + (<any>descriptions)[key] + '</span>')
+        var title = (<any>tracks)[key]
+        //var title = (<any>descriptions)[key]
+        console.log(title)
+        nodes.add({ id: id, color:'#FFF5C9', label: label, title: title, size: size, shape: 'circle'})
       }
 
       for (const x of value) { 
@@ -82,25 +96,57 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
 
     const data = { nodes, edges };
 
-    var options = {
-      nodes: {
-        borderWidth:0,
-        color: {
-          border: '#222',
+    var options;
+
+    if (window.screen.width < 900){
+      options= {
+        physics:{
+          barnesHut: {
+            damping: 0.5
+          }
         },
-        shape: 'star'
-      },
-      edges: {
-        color: {
-          color: '#FFFFFF',
-          highlight: '#A22'
+        nodes: {
+          borderWidth:0,
+          color: {
+            border: '#222',
+          },
+          shape: 'star'
         },
-      },
-      layout: {
-        improvedLayout: true,
-        randomSeed: 191006
-        //randomSeed: 2
-    },
+        edges: {
+          color: {
+            color: '#FFFFFF',
+            highlight: '#A22'
+          },
+        },
+        layout: {
+          improvedLayout: true,
+          randomSeed: 191006
+          //randomSeed: 2
+        },
+      }
+    }
+    // no damping
+    else {
+      options = {
+        nodes: {
+          borderWidth:0,
+          color: {
+            border: '#222',
+          },
+          shape: 'star'
+        },
+        edges: {
+          color: {
+            color: '#FFFFFF',
+            highlight: '#A22'
+          },
+        },
+        layout: {
+          improvedLayout: true,
+          randomSeed: 191006
+          //randomSeed: 2
+        },
+      }
     }
 
     const container = this.visNetwork;
@@ -112,13 +158,35 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
     networkInstance.on('doubleClick', function(params) {
       var ids = params.nodes;
       var clickedNodes = nodes.get(ids);
-      console.log('clicked nodes:', clickedNodes);
+      console.log('double clicked nodes:', clickedNodes);
       if (isValidHttpUrl(clickedNodes[0].id))
       {
         open(clickedNodes[0].id)
       }
-          
-  });
+    })
 
+    if (window.screen.width < 900){
+      networkInstance.on("click", function (params) {
+        var ids = params.nodes;
+        var clickedNodes = nodes.get(ids);
+        console.log('single clicked node:', clickedNodes)
+        var index = clickedNodes[0].label
+        if (isNaN(Number(index.substring(1)))){
+          index = index
+        }
+        else {
+          index = index.substring(1)
+        }
+        clickedNodes[0].title = (<any>tracks)[index]
+        console.log(clickedNodes[0].title)
+      })
+    }
   }
 }
+
+function htmlTitle(html: string) {
+  const container = document.createElement("div");
+  container.innerHTML = html;
+  return container;
+}
+
