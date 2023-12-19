@@ -64,7 +64,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         console.log(title)
         nodes.add({ id: id, color:'#FFF5C9', label: label, title: title, size: size, shape: 'circle'})
       }
-
+      
       for (const x of value) { 
 
 /*      if (!already_existing_id.includes(x[0])){
@@ -79,6 +79,9 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         }
         edges.add({ from: id, to: x[0] })
       }
+
+      //nodes.add({id: "Pick a Record", title:"Pick a record", size: 500, label: "Pick a record"})
+      
       //nodes.add({ id: genre, label: genre, color:'#FFF5C9'})
     }
 
