@@ -40,12 +40,12 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
       let size;
       
       if (isNaN(Number(key))) {
-        id = "https://soundcloud.com/aniel-rossi/k-sindrome-invites-" + key
+        id = "https://soundcloud.com/sindromeland/k-sindrome-invites-" + key
         label = key
         size = 35
       }
       else {
-        id =  "https://soundcloud.com/aniel-rossi/k-with-sindrome-" + key
+        id =  "https://soundcloud.com/sindromeland/k-with-sindrome-" + key
         label = '#' + key
         size = 300
       }
@@ -56,13 +56,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
       else{
         //nodes.add({ id: id, color:'#FFF5C9', title: 'src/assets/txt/tracklists_' + key + '.txt', size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
         //nodes.add({ id: id, color:'#FFF5C9', title: (<any>tracks)[key], size:35, shape: 'image', image: '/assets/img/lowK-' + key + '-remastered.webp'})
-        console.log(key)
-        //var title = (<any>descriptions)[key] + (<any>tracks)[key]
-        //var title =  htmlTitle('<span">' + (<any>descriptions)[key] + '</span>')
-        var title = (<any>tracks)[key]
-        //var title = (<any>descriptions)[key]
-        console.log(title)
-        nodes.add({ id: id, color:'#FFF5C9', label: label, title: title, size: size, shape: 'circle'})
+        nodes.add({ id: id, color:'#FFF5C9', label: label, title: (<any>tracks)[key], size: size, shape: 'circle'})
       }
 
       for (const x of value) { 
