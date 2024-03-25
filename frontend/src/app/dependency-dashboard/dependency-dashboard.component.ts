@@ -39,12 +39,12 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
       let size;
       
       if (isNaN(Number(key))) {
-        id = "https://soundcloud.com/aniel-rossi/k-sindrome-invites-" + key
+        id = "https://soundcloud.com/sindromeland/k-sindrome-invites-" + key
         label = key
         size = 35
       }
       else {
-        id =  "https://soundcloud.com/aniel-rossi/k-with-sindrome-" + key
+        id =  "https://soundcloud.com/sindromeland/k-with-sindrome-" + key
         label = '#' + key
         size = 300
       }
