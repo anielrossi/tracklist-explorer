@@ -3,6 +3,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { DataSet } from 'vis-data';
 import { Network } from 'vis-network';
 import tracks from 'src/assets/json/tracks_json.json'
+import descriptions from 'src/assets/json/descriptions_json.json'
 
 @Component({
   selector: 'jhi-dependency-dashboard',
@@ -176,3 +177,10 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
     }
   }
 }
+
+function htmlTitle(html: string) {
+  const container = document.createElement("div");
+  container.innerHTML = html;
+  return container;
+}
+
