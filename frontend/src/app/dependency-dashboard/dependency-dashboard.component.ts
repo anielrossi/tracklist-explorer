@@ -43,7 +43,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         size = 300;
       }
 
-      if (window.innerWidth < 900) {
+      if (window.innerWidth < 768) {
         nodes.add({ id, label, shape: 'circle', color: '#FFF5C9', size });
       } else {
         nodes.add({ id, color: '#FFF5C9', label, title: (<any>tracks)[key], size, shape: 'circle' });
@@ -80,14 +80,30 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         color: { color: '#FFFFFF', highlight: '#A22' }
       },
       layout: { improvedLayout: true, randomSeed: 191006 },
-      physics: window.innerWidth < 900 ? { barnesHut: { damping: 0.5 } } : undefined
+      physics: window.innerWidth < 768 ? { barnesHut: { damping: 0.5 } } : undefined
     };
 
     const container = this.visNetwork;
     const networkInstance = new Network(container.nativeElement, data, options);
-
+    
+    //Zoom handling
+    if (window.innerWidth < 768) {
+      // On mobile, zoom in closer
+      networkInstance.once("stabilizationIterationsDone", function () {
+        networkInstance.moveTo({
+          scale: 0.5,   // try 1.5–2.5 until text is readable
+          animation: true,
+        });
+      });
+    } else {
+      // On desktop, fit the whole graph
+      networkInstance.once("stabilizationIterationsDone", function () {
+        networkInstance.fit({ animation: true });
+      });
+    }
+    
     // Mobile double-tap handling
-    if (window.innerWidth < 900) {
+    if (window.innerWidth < 768) {
       let lastTapTime = 0;
 
       networkInstance.on("click", function (params) {
