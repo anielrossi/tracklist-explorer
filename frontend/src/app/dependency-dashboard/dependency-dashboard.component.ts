@@ -86,16 +86,6 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
     const container = this.visNetwork;
     const networkInstance = new Network(container.nativeElement, data, options);
 
-    // Desktop doubleClick remains
-    networkInstance.on('doubleClick', function (params) {
-      const ids = params.nodes;
-      const clickedNodes = nodes.get(ids);
-      console.log('double clicked nodes:', clickedNodes);
-      if (clickedNodes.length && isValidHttpUrl(clickedNodes[0].id)) {
-        window.open(clickedNodes[0].id, "_blank");
-      }
-    });
-
     // Mobile double-tap handling
     if (window.innerWidth < 900) {
       let lastTapTime = 0;
@@ -128,6 +118,18 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         lastTapTime = currentTime;
       });
     }
+    else{
+      // Desktop doubleClick remains
+    networkInstance.on('doubleClick', function (params) {
+      const ids = params.nodes;
+      const clickedNodes = nodes.get(ids);
+      console.log('double clicked nodes:', clickedNodes);
+      if (clickedNodes.length && isValidHttpUrl(clickedNodes[0].id)) {
+        window.open(clickedNodes[0].id, "_blank");
+      }
+    });
+    }
+
   }
 }
 
