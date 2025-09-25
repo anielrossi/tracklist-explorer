@@ -1,7 +1,21 @@
 .network {
-  display:block;
-  width:100%;
-  height:100%;
-  /* background-color:red; */
+  display: block;
+  width: 100%;
+  height: 100%;
   background-image: url('/assets/img/bg2.webp');
+}
+
+.instructions {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(255, 255, 255, 0); /* fully transparent */
+  color: #ffffff;                                  /* black text */
+  padding: 8px 16px;
+  border-radius: 8px;
+  z-index: 9999;
+  font-size: 14px;
+  text-align: center;
+  pointer-events: none;
 }
