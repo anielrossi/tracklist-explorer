@@ -103,7 +103,8 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
         if (tapLength < 300) {
           // Double-tap detected: open URL
           if (isValidHttpUrl(clickedNode.id)) {
-            window.open(clickedNode.id, "_blank");
+            //window.open(clickedNode.id, "_blank");
+            window.location.href = clickedNode.id
           }
         } else {
           // Single tap: update node title
