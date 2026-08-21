@@ -34,11 +34,11 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
       let size: number;
 
       if (isNaN(Number(key))) {
-        id = "https://soundcloud.com/sindromebasaam/k-sindrome-invites-" + key;
+        id = "https://pub-248a36f8718a4341a7737f497f53f299.r2.dev/audio/" + key + ".mp3";
         label = key;
         size = 35;
       } else {
-        id = "https://soundcloud.com/sindromebasaam/k-with-sindrome-" + key;
+        id = "https://pub-248a36f8718a4341a7737f497f53f299.r2.dev/audio/" + key + ".mp3";
         label = '#' + key;
         size = 300;
       }
@@ -141,7 +141,7 @@ export class DependencyDashboardComponent implements OnInit, AfterViewInit {
       const ids = params.nodes;
       const clickedNodes = nodes.get(ids);
       console.log('double clicked nodes:', clickedNodes);
-      if (clickedNodes.length && isValidHttpUrl(clickedNodes[0].id)) {
+      if (clickedNodes.length) {
         window.open(clickedNodes[0].id, "_blank");
       }
     });
